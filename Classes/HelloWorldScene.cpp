@@ -117,7 +117,7 @@ bool HelloWorld::init()
     //}
     //return true;
 	//テキストファイル名を指定して、スプライトを作成
-	Sprite* sprite = Sprite::create("kabocha");
+	Sprite* sprite = Sprite::create("kabocha.png");
 	//シーングラフにつなぐ
 	this->addChild(sprite);
 }
