@@ -41,7 +41,10 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 	cocos2d::Sprite* sprite;
-	int time = 0;
+	//実行開始からのカウント
+	/*int counter;*/
+	//どちらに移動中なのか
+	int state;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

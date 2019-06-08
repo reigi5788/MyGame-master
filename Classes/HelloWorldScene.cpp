@@ -126,7 +126,11 @@ bool HelloWorld::init()
 	//sprite->setFlippedX(true);
 	//sprite->setFlippedY(true);
 	//sprite->setColor(Color3B(150,255,255));
+	sprite->setColor(Color3B(255, 255, 255));
 	this ->scheduleUpdate();
+
+	//counter = 0;
+	state = 0;
 	return true;
 
 }
@@ -148,16 +152,56 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	time= + 1;
-	Vec2 pos = sprite->getPosition();
-
-	pos += Vec2(-1.0f, 0.0f);
-	if (time = 5)
+	Vec2 pos;
+	switch (state)
 	{
-		sprite->setVisible(true);
+	case 0:
+		pos = sprite->getPosition();
+		pos += Vec2(-5.0f, 0.0f);
+		sprite->setPosition(pos);
+		if (pos.x <= 0)
+		{
+			state = 1;
+		}
+		break;
+	case 1:
+		pos = sprite->getPosition();
+		pos += Vec2(0.0f, -5.0f);
+		sprite->setPosition(pos);
+		if (pos.y <= 0)
+		{
+			state = 2;
+		}
+		break;
+	case 2:
+		pos = sprite->getPosition();
+		pos += Vec2(5.0f, 0.0f);
+		sprite->setPosition(pos);
+		if (pos.x <=100)
+		{
+			state = 3;
+		}
+		break;
+	default:
+		pos = sprite->getPosition();
+		pos += Vec2(0.0f, 5.0f);
+		sprite->setPosition(pos);
+		if (pos.y <= 700)
+		{
+			state = 0;
+		}
+		break;
+	
+		
 	}
+	/*Vec2 pos = sprite->getPosition();*/
+
+	/*pos += Vec2(-1.0f, 0.0f);*/
 
 	sprite->setPosition(pos);
 	
+	/*counter++;*/
+	//float opacity = 255- (counter / 300.0f * 255.0f);
+	//sprite->setOpacity(opacity);
 
 }
