@@ -117,10 +117,20 @@ bool HelloWorld::init()
     //}
     //return true;
 	//テキストファイル名を指定して、スプライトを作成
-	Sprite* sprite = Sprite::create("kabocha.png");
+	sprite = Sprite::create("kabocha.png");
 	//シーングラフにつなぐ
 	this->addChild(sprite);
+	sprite->setPosition(Vec2(900, 400));
+	/*sprite->setRotation(45.0f);*/
+	/*sprite->setScale(3.0f, 4.0f);*/
+	//sprite->setFlippedX(true);
+	//sprite->setFlippedY(true);
+	//sprite->setColor(Color3B(150,255,255));
+	this ->scheduleUpdate();
+	return true;
+
 }
+
 
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
@@ -133,5 +143,21 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //EventCustom customEndEvent("game_scene_close_event");
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
+
+}
+
+void HelloWorld::update(float delta)
+{
+	time= + 1;
+	Vec2 pos = sprite->getPosition();
+
+	pos += Vec2(-1.0f, 0.0f);
+	if (time = 5)
+	{
+		sprite->setVisible(true);
+	}
+
+	sprite->setPosition(pos);
+	
 
 }
