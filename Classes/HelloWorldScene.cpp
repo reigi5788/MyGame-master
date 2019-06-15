@@ -118,15 +118,22 @@ bool HelloWorld::init()
     //return true;
 	//テキストファイル名を指定して、スプライトを作成
 	sprite = Sprite::create("kabocha.png");
+	
 	//シーングラフにつなぐ
 	this->addChild(sprite);
-	sprite->setPosition(Vec2(900, 400));
+	sprite->setPosition(Vec2(visibleSize.width/2.0f, visibleSize.height/2.0f));
 	/*sprite->setRotation(45.0f);*/
 	/*sprite->setScale(3.0f, 4.0f);*/
 	//sprite->setFlippedX(true);
 	//sprite->setFlippedY(true);
-	//sprite->setColor(Color3B(150,255,255));
-	sprite->setColor(Color3B(255, 255, 255));
+	sprite->setColor(Color3B(0,0,0));
+	/*sprite->setOpacity(255);*/
+	//画像の左下が（0,0）
+	//画像の右上が(1,0)の座標系で
+	//基準点を指定する。
+	sprite->setRotation(45.0f);
+	sprite->setAnchorPoint(Vec2(1.0f, 0.0f));
+	sprite->setFlippedX(true);
 	this ->scheduleUpdate();
 
 	//counter = 0;
@@ -152,56 +159,63 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	Vec2 pos;
-	switch (state)
-	{
-	case 0:
-		pos = sprite->getPosition();
-		pos += Vec2(-5.0f, 0.0f);
-		sprite->setPosition(pos);
-		if (pos.x <= 0)
-		{
-			state = 1;
-		}
-		break;
-	case 1:
-		pos = sprite->getPosition();
-		pos += Vec2(0.0f, -5.0f);
-		sprite->setPosition(pos);
-		if (pos.y <= 0)
-		{
-			state = 2;
-		}
-		break;
-	case 2:
-		pos = sprite->getPosition();
-		pos += Vec2(5.0f, 0.0f);
-		sprite->setPosition(pos);
-		if (pos.x <=100)
-		{
-			state = 3;
-		}
-		break;
-	case 3:
-		pos = sprite->getPosition();
-		pos += Vec2(0.0f, 5.0f);
-		sprite->setPosition(pos);
-		if (pos.y <= 700)
-		{
-			state = 0;
-		}
-		break;
-	
-		
-	}
-	/*Vec2 pos = sprite->getPosition();*/
+	float b = sprite->getColor().b;
+	float r = sprite->getColor().r;
+	float g = sprite->getColor().g;
+	b-= 1.0f;
+	r += 1.0f;
+	sprite->setColor(Color3B( r, g, b));
+	//Vec2 pos;
+	//switch (state)
+	//{
+	//case 0:
+	//	pos = sprite->getPosition();
+	//	pos += Vec2(-5.0f, 0.0f);
+	//	sprite->setPosition(pos);
+	//	if (pos.x <= -120)
+	//	{
+	//		state = 1;
+	//	}
+	//	break;
+	//case 1:
+	//	pos = sprite->getPosition();
+	//	pos += Vec2(5.0f, 0.0f);
+	//	sprite->setPosition(pos);
+	//	if (pos.y <= 700)
+	//	{
+	//		state = 2;
+	//	}
+	//	break;
+	//case 2:
+	//	pos = sprite->getPosition();
+	//	pos += Vec2(-5.0f, 0.0f);
+	//	sprite->setPosition(pos);
+	//	if (pos.x <=1200)
+	//	{
+	//		state = 3;
+	//	}
+	//	break;
+	//case 3:
+	//	pos = sprite->getPosition();
+	//	pos += Vec2(0.0f, 5.0f);
+	//	sprite->setPosition(pos);
+	//	if (pos.y >= -100)
+	//	{
+	//		state = 0;
+	//	}
+	//	
+	//	break;
+	//
+	//	
+	//}
+	///*Vec2 pos = sprite->getPosition();*/
 
-	/*pos += Vec2(-1.0f, 0.0f);*/
+	///*pos += Vec2(-1.0f, 0.0f);*/
 
-	sprite->setPosition(pos);
-	
-	/*counter++;*/
-	//float opacity = 255- (counter / 300.0f * 255.0f);
-	//sprite->setOpacity(opacity);
+	//sprite->setPosition(pos);
+	//
+	///*counter++;*/
+	////float opacity = 255- (counter / 300.0f * 255.0f);
+	////sprite->setOpacity(opacity);
 
 }
