@@ -126,18 +126,19 @@ bool HelloWorld::init()
 	/*sprite->setScale(3.0f, 4.0f);*/
 	//sprite->setFlippedX(true);
 	//sprite->setFlippedY(true);
-	sprite->setColor(Color3B(0,0,0));
+	sprite->setColor(Color3B(255,255,255));
 	/*sprite->setOpacity(255);*/
 	//画像の左下が（0,0）
 	//画像の右上が(1,0)の座標系で
 	//基準点を指定する。
 	sprite->setRotation(45.0f);
-	sprite->setAnchorPoint(Vec2(1.0f, 0.0f));
-	sprite->setFlippedX(true);
-	this ->scheduleUpdate();
+	/*sprite->setAnchorPoint(Vec2(1.0f, 0.0f));*/
+	
+	
 
 	//counter = 0;
 	state = 0;
+	this->scheduleUpdate();
 	return true;
 
 }
@@ -159,13 +160,50 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	float b = sprite->getColor().b;
+	//青色から赤色へ変化していく
+	/*float b = sprite->getColor().b;
 	float r = sprite->getColor().r;
 	float g = sprite->getColor().g;
 	b-= 1.0f;
 	r += 1.0f;
-	sprite->setColor(Color3B( r, g, b));
-	//Vec2 pos;
+
+	sprite->setColor(Color3B( r, g, b));*/
+	Vec2 pos;
+	switch (state)
+	{
+	case 0:
+		pos = sprite->getPosition();
+		pos += Vec2(-5.0f, 0.0f);
+		sprite->setPosition(pos);
+		if (pos.x < 0)
+		{
+			state = 1;
+			sprite->setFlippedX(false);
+		}
+		break;
+
+	case 1:
+		state = 2;
+		break;
+
+	case 2:
+		pos = sprite->getPosition();
+		pos += Vec2(5.0f, 0.0f);
+		sprite->setPosition(pos);
+		if (pos.x>1280)
+		{
+			state = 3;
+			sprite->setFlippedX(true);
+		}
+		break;
+	case 3:
+		state = 0;
+		break;
+
+
+
+
+	}
 	//switch (state)
 	//{
 	//case 0:
@@ -217,5 +255,8 @@ void HelloWorld::update(float delta)
 	///*counter++;*/
 	////float opacity = 255- (counter / 300.0f * 255.0f);
 	////sprite->setOpacity(opacity);
+
+
+
 
 }
