@@ -182,7 +182,7 @@ void HelloWorld::update(float delta)
 			state = 3;
 		}
 		break;
-	default:
+	case 3:
 		pos = sprite->getPosition();
 		pos += Vec2(0.0f, 5.0f);
 		sprite->setPosition(pos);
