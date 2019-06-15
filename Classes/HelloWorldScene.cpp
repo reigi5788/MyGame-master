@@ -118,15 +118,20 @@ bool HelloWorld::init()
     //return true;
 	//テキストファイル名を指定して、スプライトを作成
 	sprite = Sprite::create("kabocha.png");
+	sprite2 = Sprite::create("SPBall.png");
 	
 	//シーングラフにつなぐ
 	this->addChild(sprite);
+	this->addChild(sprite2);
 	sprite->setPosition(Vec2(visibleSize.width/2.0f, visibleSize.height/2.0f));
+	sprite2->setPosition(Vec2(500,500));
 	/*sprite->setRotation(45.0f);*/
 	/*sprite->setScale(3.0f, 4.0f);*/
 	//sprite->setFlippedX(true);
 	//sprite->setFlippedY(true);
 	sprite->setColor(Color3B(255,255,255));
+	sprite2->setColor(Color3B(255, 255, 255));
+	
 	/*sprite->setOpacity(255);*/
 	//画像の左下が（0,0）
 	//画像の右上が(1,0)の座標系で
@@ -135,7 +140,7 @@ bool HelloWorld::init()
 	/*sprite->setAnchorPoint(Vec2(1.0f, 0.0f));*/
 	
 	
-
+	
 	//counter = 0;
 	state = 0;
 	this->scheduleUpdate();
@@ -168,7 +173,9 @@ void HelloWorld::update(float delta)
 	r += 1.0f;
 
 	sprite->setColor(Color3B( r, g, b));*/
-	Vec2 pos;
+
+	//画像を左右に移動させ、移動方向に画像を反転
+	/*Vec2 pos;
 	switch (state)
 	{
 	case 0:
@@ -198,12 +205,14 @@ void HelloWorld::update(float delta)
 		break;
 	case 3:
 		state = 0;
-		break;
+		break;*/
+//}
+
+	
+
+	
 
 
-
-
-	}
 	//switch (state)
 	//{
 	//case 0:
