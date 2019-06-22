@@ -100,13 +100,23 @@ bool HelloWorld::init()
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
+	//—”‚Ì‰Šú‰»
+	//Ramdom r = new Ramdom;‚Æ“¯‚¶‚±‚Æ‚ğ‚µ‚Ä‚¢‚é
+	srand(time(nullptr));
+
 	for (int i =0;i < 5;i++)
 	{
 		sprite[i] = Sprite::create("kabocha.png");
 		this->addChild(sprite[i]);
-		sprite[i]->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2));
 		sprite[i]->setScale(1.0f);
-		MoveTo* action1 = MoveTo::create(1.0f, Vec2(300, 100));
+		float mx, my;
+		//-300`+300‚Ü‚Å‚Ì—”
+		mx = (float)rand() / RAND_MAX * 600;
+		my = (float)rand() / RAND_MAX * 500;
+
+
+		MoveTo* action1 = MoveTo::create(10.0f, Vec2(mx, my));
 		sprite[i]->runAction(action1);
 	}
     // add "HelloWorld" splash screen"
