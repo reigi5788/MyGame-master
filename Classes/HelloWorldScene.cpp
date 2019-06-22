@@ -116,14 +116,64 @@ bool HelloWorld::init()
     //    this->addChild(sprite, 0);
     //}
     //return true;
-	//テキストファイル名を指定して、スプライトを作成
+	/////////////////////テキストファイル名を指定して、スプライトを作成
+	//スプライト（ノードの一種の作成）
 	sprite = Sprite::create("kabocha.png");
 	sprite2 = Sprite::create("SPBall.png");
 	
 	//シーングラフにつなぐ
 	this->addChild(sprite);
 	this->addChild(sprite2);
-	sprite->setPosition(Vec2(visibleSize.width/2.0f, visibleSize.height/2.0f));
+
+
+	
+	/////////アクションの作成
+	//Actionの内容を決めてaction1をどう動かすかを決定
+	//(1秒かけて、座標300,100に向かって動く)
+	//MoveTo* action2 = MoveTo::create(1.0f, Vec2(300, 100));
+	MoveTo* action3 = MoveTo::create(1.0f, Vec2(300, 100));
+
+	//1秒かけて5倍の大きさになる
+	//ScaleTo* action1 = ScaleTo::create(1.0f, 5.0f);
+
+	//特定の座標まで何回ジャンプして到着する
+	//JumpTo*action1 = JumpTo::create(1.5f, Vec2(200, 100), 500.0f, 2);
+
+	//特定の座標からコントロールポイントを巡ってエンドポジションに移動
+	//ノードをベジエ曲線に沿って移動させる
+	/*ccBezierConfig conf;
+	conf.controlPoint_1 = Vec2(500, 500);
+	conf.controlPoint_2 = Vec2(300, 100);
+	conf.endPosition = Vec2(200, 100);
+	BezierTo* action1 = BezierTo::create(3.0f,conf);
+	*/
+
+	//何秒間に何回点滅させるか
+	//Blink* action1 = Blink::create(1.0f, 9);
+
+	//Actionの作成
+	MoveBy* action1 = MoveBy::create(2.0f, Vec2(600, 300));
+	//Actionに対していーじんぐ（緩急）をつけたアクションを生成
+	//だんだん加速していって止まる
+	//上で目的地を設定しているので急に加速しても停止する
+	//EaseIn* action2 = EaseIn::create(action1, 1.0f);
+
+	//逆方向に小刻み（？）しながら移動する
+	//EaseElasticIn* action2 = EaseElasticIn::create(action1, 2.0f);
+
+
+
+	///////Actionの実行
+	//同じActionを2つのスプライトに使いまわすと先に表示されてる方が実行されない
+	//ノードに対してアクションを実行する
+	//sprite->runAction(action3);
+	//sprite2->runAction(action3->clone());
+	//cloneメソッドを入れるとActionを複製して実行できる
+	//イージング付きアクションの実行
+	//sprite->runAction(action2);
+
+
+	sprite->setPosition(Vec2(200,200));
 	sprite2->setPosition(Vec2(500,500));
 	/*sprite->setRotation(45.0f);*/
 	/*sprite->setScale(3.0f, 4.0f);*/
