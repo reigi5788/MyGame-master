@@ -100,7 +100,15 @@ bool HelloWorld::init()
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
-
+	for (int i =0;i < 5;i++)
+	{
+		sprite[i] = Sprite::create("kabocha.png");
+		this->addChild(sprite[i]);
+		sprite[i]->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		sprite[i]->setScale(1.0f);
+		MoveTo* action1 = MoveTo::create(1.0f, Vec2(300, 100));
+		sprite[i]->runAction(action1);
+	}
     // add "HelloWorld" splash screen"
     //auto sprite = Sprite::create("HelloWorld.png");
     //if (sprite == nullptr)
