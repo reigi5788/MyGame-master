@@ -40,10 +40,10 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-	cocos2d::Sprite* sprite;
-	cocos2d::Sprite* sprite2;
+	/*cocos2d::Sprite* sprite;*/
+	//cocos2d::Sprite* sprite2;
 	//Sprite配列
-	//cocos2d::Sprite* sprite[100];
+	cocos2d::Sprite* sprite[100];
 	//実行開始からのカウント
 	/*int counter;*/
 	//どちらに移動中なのか

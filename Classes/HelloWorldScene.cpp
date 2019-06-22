@@ -104,21 +104,22 @@ bool HelloWorld::init()
 	//Ramdom r = new Ramdom;と同じことをしている
 	//srand(time(nullptr));
 
-	//for (int i =0;i < 5;i++)
-	//{
-	//	sprite[i] = Sprite::create("kabocha.png");
-	//	this->addChild(sprite[i]);
-	//	sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2));
-	//	sprite[i]->setScale(1.0f);
-	//	float mx, my;
-	//	//-300～+300までの乱数
-	//	mx = (float)rand() / RAND_MAX * 600;
-	//	my = (float)rand() / RAND_MAX * 500;
+	for (int i =0;i < 10;i++)
+	{
+		sprite[i] = Sprite::create("kabocha.png");
+		this->addChild(sprite[i]);
+		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2));
+		sprite[i]->setScale(1.0f);
+		float mx, my;
+		//-300～+300までの乱数
+		mx = (float)rand() / RAND_MAX * 600;
+		my = (float)rand() / RAND_MAX * 500;
 
 
-	//	MoveTo* action1 = MoveTo::create(10.0f, Vec2(mx, my));
-	//	sprite[i]->runAction(action1);
-	//}
+		//MoveTo* action1 = MoveTo::create(10.0f, Vec2(mx, my));
+		JumpTo* action1 = JumpTo::create(1.5f, Vec2(mx, my), 500.0f, 3);
+		sprite[i]->runAction(action1);
+	}
 
     // add "HelloWorld" splash screen"
     //auto sprite = Sprite::create("HelloWorld.png");
@@ -137,12 +138,12 @@ bool HelloWorld::init()
     //return true;
 	/////////////////////テキストファイル名を指定して、スプライトを作成
 	//スプライト（ノードの一種の作成）
-	sprite = Sprite::create("kabocha.png");
-	sprite2 = Sprite::create("SPBall.png");
+	/*sprite = Sprite::create("kabocha.png");
+	sprite2 = Sprite::create("SPBall.png");*/
 	//
 	////シーングラフにつなぐ
-	this->addChild(sprite);
-	this->addChild(sprite2);
+	/*this->addChild(sprite);
+	this->addChild(sprite2);*/
 
 
 	
@@ -156,7 +157,7 @@ bool HelloWorld::init()
 	//ScaleTo* action1 = ScaleTo::create(1.0f, 5.0f);
 
 	//特定の座標まで何回ジャンプして到着する
-	JumpTo*action1 = JumpTo::create(1.5f, Vec2(800, 100), 500.0f, 3);
+	//JumpTo*action1 = JumpTo::create(1.5f, Vec2(800, 100), 500.0f, 3);
 
 	//特定の座標からコントロールポイントを巡ってエンドポジションに移動
 	//ノードをベジエ曲線に沿って移動させる
@@ -185,21 +186,21 @@ bool HelloWorld::init()
 	/////////Actionの実行
 	////同じActionを2つのスプライトに使いまわすと先に表示されてる方が実行されない
 	////ノードに対してアクションを実行する
-	sprite->runAction(action1);
-	sprite2->runAction(action1->clone());
+	//sprite->runAction(action1);
+	//sprite2->runAction(action1->clone());
 	////cloneメソッドを入れるとActionを複製して実行できる
 	////イージング付きアクションの実行
 	////sprite->runAction(action2);
 
 
-	sprite->setPosition(Vec2(200,200));
-	sprite2->setPosition(Vec2(200,500));
+	/*sprite->setPosition(Vec2(200,200));
+	sprite2->setPosition(Vec2(200,500));*/
 	///*sprite->setRotation(45.0f);*/
 	///*sprite->setScale(3.0f, 4.0f);*/
 	////sprite->setFlippedX(true);
 	////sprite->setFlippedY(true);
-	sprite->setColor(Color3B(255,255,255));
-	sprite2->setColor(Color3B(255, 255, 255));
+	/*sprite->setColor(Color3B(255,255,255));
+	sprite2->setColor(Color3B(255, 255, 255));*/
 	//
 	///*sprite->setOpacity(255);*/
 	////画像の左下が（0,0）
