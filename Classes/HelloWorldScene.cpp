@@ -229,12 +229,12 @@ bool HelloWorld::init()
 
 	sprite2->setPosition(Vec2(visibleSize.width-100,visibleSize.height-200));
 	//–â‘è1
-	MoveTo * moveleft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
-	MoveTo * moveright = moveleft->reverse();
+	//MoveTo * moveleft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
+	//MoveTo * moveright = moveleft->reverse();
 
-	Sequence * seq1 = Sequence::create(moveleft, moveright);
+	//Sequence * seq1 = Sequence::create(moveleft, moveright);
 
-	sprite2->runAction(seq1);
+	//sprite2->runAction(seq1);
 
 
 	//counter = 0;
