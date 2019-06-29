@@ -104,23 +104,23 @@ bool HelloWorld::init()
 	//Ramdom r = new Ramdom;と同じことをしている
 	//srand(time(nullptr));
 
-	for (int i =0;i < 10;i++)
-	{
-		sprite[i] = Sprite::create("kabocha.png");
-		this->addChild(sprite[i]);
-		sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2));
-		sprite[i]->setScale(1.0f);
-		float mx, my;
-		//-300～+300までの乱数
-		mx = (float)rand() / RAND_MAX * 600;
-		my = (float)rand() / RAND_MAX * 500;
+	//for (int i =0;i < 10;i++)
+	//{
+	//	sprite[i] = Sprite::create("kabocha.png");
+	//	this->addChild(sprite[i]);
+	//	sprite[i]->setPosition(Vec2(100 * i, visibleSize.height / 2));
+	//	sprite[i]->setScale(1.0f);
+	//	float mx, my;
+	//	//-300～+300までの乱数
+	//	mx = (float)rand() / RAND_MAX * 600;
+	//	my = (float)rand() / RAND_MAX * 500;
 
 
-		//MoveTo* action1 = MoveTo::create(10.0f, Vec2(mx, my));
-		JumpTo* action1 = JumpTo::create(1.5f, Vec2(mx, my), 500.0f, 3);
-		sprite[i]->runAction(action1);
-	}
-
+	//	//MoveTo* action1 = MoveTo::create(10.0f, Vec2(mx, my));
+	//	JumpTo* action1 = JumpTo::create(1.5f, Vec2(mx, my), 500.0f, 3);
+	//	sprite[i]->runAction(action1);
+	//}
+	
     // add "HelloWorld" splash screen"
     //auto sprite = Sprite::create("HelloWorld.png");
     //if (sprite == nullptr)
@@ -138,12 +138,12 @@ bool HelloWorld::init()
     //return true;
 	/////////////////////テキストファイル名を指定して、スプライトを作成
 	//スプライト（ノードの一種の作成）
-	/*sprite = Sprite::create("kabocha.png");
-	sprite2 = Sprite::create("SPBall.png");*/
-	//
-	////シーングラフにつなぐ
-	/*this->addChild(sprite);
-	this->addChild(sprite2);*/
+	//sprite = Sprite::create("kabocha.png");
+	sprite2 = Sprite::create("SPBall.png");
+	
+	//シーングラフにつなぐ
+	/*this->addChild(sprite);*/
+	this->addChild(sprite2);
 
 
 	
@@ -152,7 +152,16 @@ bool HelloWorld::init()
 	//(1秒かけて、座標300,100に向かって動く)
 	//MoveTo* action2 = MoveTo::create(1.0f, Vec2(300, 100));
 	//MoveTo* action3 = MoveTo::create(1.0f, Vec2(300, 100));
-
+	//MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+	//JumpTo* action2 = JumpTo::create(1.0f, Vec2(200.0f, 200.0f), 300.0f, 2);
+	//
+	////JumpとTinttoの同時発動
+	//Spawn* action3 = Spawn::create(action2, action1, nullptr);
+	MoveBy* action1 = MoveBy::create(2.0f, Vec2(100.0f, 100.0f));
+	/*Repeat* action2 = Repeat::create(action1, 3);*/
+	JumpBy* action2 = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100, 1);
+	Repeat* action3 = Repeat::create(action2, 10);
+	sprite2->runAction(action2);
 	//1秒かけて5倍の大きさになる
 	//ScaleTo* action1 = ScaleTo::create(1.0f, 5.0f);
 
