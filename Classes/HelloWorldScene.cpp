@@ -157,14 +157,18 @@ bool HelloWorld::init()
 	//
 	////Jump‚ÆTintto‚Ì“¯Žž”­“®
 	//Spawn* action3 = Spawn::create(action2, action1, nullptr);
-	MoveBy* action1 = MoveBy::create(2.0f, Vec2(100.0f, 100.0f));
-	/*Repeat* action2 = Repeat::create(action1, 3);*/
-	JumpBy* action2 = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100, 1);
-	Repeat* action3 = Repeat::create(action2, 10);
-	sprite2->runAction(action2);
+	//MoveBy* action1 = MoveBy::create(2.0f, Vec2(100.0f, 100.0f));
+	///*Repeat* action2 = Repeat::create(action1, 3);*/
+	//JumpBy* action2 = JumpBy::create(0.5f, Vec2(100.0f, 100.0f), 100, 1);
+	//Repeat* action3 = Repeat::create(action2, 10);
+	//sprite2->runAction(action2);
 	//1•b‚©‚¯‚Ä5”{‚Ì‘å‚«‚³‚É‚È‚é
 	//ScaleTo* action1 = ScaleTo::create(1.0f, 5.0f);
-
+	/*sprite2->setPosition(Vec2(200, 200));
+	MoveTo* action1 = MoveTo::create(1.0f, Vec2(1000, 200));
+	MoveTo* action2 = MoveTo::create(1.0f, Vec2(200, 200));
+	Sequence* action3 = Sequence::create(action1, action2, nullptr);*/
+	//sprite2->runAction(action3);
 	//“Á’è‚ÌÀ•W‚Ü‚Å‰½‰ñƒWƒƒƒ“ƒv‚µ‚Ä“ž’…‚·‚é
 	//JumpTo*action1 = JumpTo::create(1.5f, Vec2(800, 100), 500.0f, 3);
 
@@ -202,8 +206,8 @@ bool HelloWorld::init()
 	////sprite->runAction(action2);
 
 
-	/*sprite->setPosition(Vec2(200,200));
-	sprite2->setPosition(Vec2(200,500));*/
+	//sprite->setPosition(Vec2(200,200));
+
 	///*sprite->setRotation(45.0f);*/
 	///*sprite->setScale(3.0f, 4.0f);*/
 	////sprite->setFlippedX(true);
@@ -220,6 +224,19 @@ bool HelloWorld::init()
 	//
 	//
 	
+
+
+
+	sprite2->setPosition(Vec2(visibleSize.width-100,visibleSize.height-200));
+	//–â‘è1
+	MoveTo * moveleft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
+	MoveTo * moveright = moveleft->reverse();
+
+	Sequence * seq1 = Sequence::create(moveleft, moveright);
+
+	sprite2->runAction(seq1);
+
+
 	//counter = 0;
 	state = 0;
 	this->scheduleUpdate();
