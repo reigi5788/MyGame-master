@@ -24,6 +24,7 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
+#include "AudioEngine.h"
 
 USING_NS_CC;
 
@@ -143,7 +144,7 @@ bool HelloWorld::init()
 	
 	//シーングラフにつなぐ
 	/*this->addChild(sprite);*/
-	this->addChild(sprite2);
+	//this->addChild(sprite2);
 
 
 	
@@ -237,7 +238,26 @@ bool HelloWorld::init()
 	//sprite2->runAction(seq1);
 
 
-	//counter = 0;
+	//サウンド再生
+	experimental::AudioEngine::play2d("EngineSound.mp3");
+	//サウンドをループ再生するときはファイル名の後にtrueを付ける
+	//指定したサウンドの再生を停止
+	//int audioID;
+	//audioID = experimental::AudioEngine::play2d("ファイル名.mp3",true);
+	//experimental::AudioEngine::stop(audioID);
+
+
+		//counter = 0;
+	//関数呼び出しアクションの生成
+	//CC_CALLBACK_0 第一引数：呼び出したいメンバ関数
+	//CC_CALLVACK_0 第二引数：メンバ関数を呼び出すオブジェクト
+	//CallFunc* action = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction,this));
+
+	//アクションを実行
+	//this->runAction(action);
+
+
+
 	state = 0;
 	this->scheduleUpdate();
 	return true;
@@ -365,3 +385,10 @@ void HelloWorld::update(float delta)
 
 
 }
+// 任意の自作メンバ関数
+//void HelloWorld::myFunction() 
+//{  
+//// 任意の処理  
+//Sprite* spr = Sprite::create("HelloWorld.png");  
+//this->addChild(spr); 
+//}
