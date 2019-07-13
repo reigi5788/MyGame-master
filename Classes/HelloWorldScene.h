@@ -38,10 +38,17 @@ public:
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
 	void myFunction();
+	void cutin();
+	void flash();
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 	/*cocos2d::Sprite* sprite;*/
 	cocos2d::Sprite* sprite2;
+	cocos2d::Sprite* backGround;
+	cocos2d::Sprite* ninnja1;
+	cocos2d::Sprite* dedede1;
+	cocos2d::Sprite* cutin1;
+	cocos2d::Sprite* mark1;
 	//Sprite配列
 	cocos2d::Sprite* sprite[100];
 	//実行開始からのカウント

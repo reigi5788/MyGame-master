@@ -26,6 +26,7 @@
 #include "SimpleAudioEngine.h"
 #include "AudioEngine.h"
 
+
 USING_NS_CC;
 
 Scene* HelloWorld::createScene()
@@ -140,12 +141,16 @@ bool HelloWorld::init()
 	/////////////////////テキストファイル名を指定して、スプライトを作成
 	//スプライト（ノードの一種の作成）
 	//sprite = Sprite::create("kabocha.png");
-	sprite2 = Sprite::create("SPBall.png");
-	
+	//sprite2 = Sprite::create("SPBall.png");
+	backGround = Sprite::create("yuugure.png");
+	ninnja1 = Sprite::create("Ninjakaby1.png");
+	dedede1 = Sprite::create("DEDEDE1.png");
 	//シーングラフにつなぐ
 	/*this->addChild(sprite);*/
 	//this->addChild(sprite2);
-
+	this->addChild(backGround);
+	this->addChild(ninnja1);
+	this->addChild(dedede1);
 
 	
 	/////////アクションの作成
@@ -228,7 +233,9 @@ bool HelloWorld::init()
 
 
 
-	sprite2->setPosition(Vec2(visibleSize.width-100,visibleSize.height-200));
+	backGround->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2));
+	ninnja1->setPosition(200, 100);
+	dedede1->setPosition(1000, 150);
 	//問題1
 	//MoveTo * moveleft = MoveTo::create(5.0f, Vec2(100, visibleSize.height - 100));
 	//MoveTo * moveright = moveleft->reverse();
@@ -239,7 +246,7 @@ bool HelloWorld::init()
 
 
 	//サウンド再生
-	experimental::AudioEngine::play2d("EngineSound.mp3");
+	
 	//サウンドをループ再生するときはファイル名の後にtrueを付ける
 	//指定したサウンドの再生を停止
 	//int audioID;
@@ -252,10 +259,13 @@ bool HelloWorld::init()
 	//CC_CALLBACK_0 第一引数：呼び出したいメンバ関数
 	//CC_CALLVACK_0 第二引数：メンバ関数を呼び出すオブジェクト
 	//CallFunc* action = CallFunc::create(CC_CALLBACK_0(HelloWorld::myFunction,this));
-
+	//experimental::AudioEngine::play2d("hyoushigi2.mp3");
+	//下のカットインを呼び出し
+	CallFunc* action = CallFunc::create(CC_CALLBACK_0(HelloWorld::cutin, this));
+	//CallFunc* acrion2 = CallFunc::create(CC_CALLBACK_1(HelloWorld::flash, this));
 	//アクションを実行
-	//this->runAction(action);
-
+	this->runAction(action);
+	
 
 
 	state = 0;
@@ -279,6 +289,32 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 }
 
+void HelloWorld::cutin()
+{
+	
+
+	Sprite* cutin1 = Sprite::create("Cutin1.png");
+	this->addChild(cutin1);
+	cutin1->setScale(4,3);
+	cutin1->setPosition(650, 550);
+	//MoveTo* action2 = MoveTo::create(1.0f, Vec2(200, 200));
+	experimental::AudioEngine::play2d("hyoushigi2.mp3");
+	DelayTime* cutin2 = DelayTime::create(3.0f);
+	RemoveSelf* cutin3 = RemoveSelf::create(cutin1);
+	Sequence* cutin4 = Sequence::create(cutin2, cutin3, nullptr);
+	cutin1->runAction(cutin4);
+
+}
+
+
+void HelloWorld::flash()
+{
+	Sprite* mark1 = Sprite::create("mark");
+	DelayTime* mark2 = DelayTime::create(0.05f);
+	RemoveSelf* mark3 = RemoveSelf::create(mark1);
+	Sequence* mark4 = Sequence::create(mark2, mark3, nullptr);
+	mark1->runAction(mark4);
+}
 void HelloWorld::update(float delta)
 {
 	//青色から赤色へ変化していく
